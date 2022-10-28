@@ -1,7 +1,13 @@
 import Layout from '../components/layout'
 import React, { useEffect } from "react";
+import { Dialog } from '@reach/dialog';
+import { VisuallyHidden } from "@reach/visually-hidden";
 
 export default function Home() {
+
+  const [showDialog, setShowDialog] = React.useState(false);
+  const open = () => setShowDialog(true);
+  const close = () => setShowDialog(false);
 
   useEffect(() => {
 
@@ -28,10 +34,21 @@ export default function Home() {
 
 
 
-
   return (
   <Layout>
     
+
+    <div>
+      <button onClick={open}>Open Dialog</button>
+      <VisuallyHidden>Close</VisuallyHidden>
+      <Dialog isOpen={showDialog} onDismiss={close}>
+        <button className="close-button" onClick={close}>
+          <span aria-hidden>×</span>
+        </button>
+        <p>Hello there. I am a dialog</p>
+      </Dialog>
+    </div>
+
 
     <div className="toast align-items-center text-white bg-primary border-0 position-absolute top-50" role="alert" aria-live="assertive" aria-atomic="true">
         <div className="d-flex">
