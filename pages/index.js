@@ -1,6 +1,9 @@
 import Layout from '../components/layout'
 import React, { useEffect } from "react";
 import UnauthenticatedApp from '../components/unauthenticated-app';
+import AuthenticatedApp from '../components/authenticated-app';
+import { useUser } from '@auth0/nextjs-auth0';
+import { FullPageSpinner } from '../components/lib';
 
 export default function Home() {
   useEffect(() => {
@@ -27,10 +30,14 @@ export default function Home() {
   }, [])
 
 
+  const { user } = useUser();
 
+ 
   return (
   <Layout>
-    <UnauthenticatedApp/>
+    <React.Suspense fallback={<FullPageSpinner />}>
+      {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+    </React.Suspense>
 
   </Layout>
   )
