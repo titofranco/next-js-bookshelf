@@ -2,8 +2,12 @@ import * as React from 'react'
 import {Button} from './lib'
 import { Logo } from './logo'
 import Link from 'next/link'
+import { useAuth0 } from "@auth0/auth0-react";
 
 function UnauthenticatedApp() {
+
+  const { loginWithRedirect } = useAuth0();
+
   return (
     <div
       css={{
@@ -24,9 +28,7 @@ function UnauthenticatedApp() {
           gridGap: '0.75rem',
         }}
       >
-        <Link href="/api/auth/login" variant="primary">
-          <Button>Login</Button>
-        </Link>
+          <Button variant="primary" onClick={() => loginWithRedirect()}>Login</Button>
         
       </div>
     </div>

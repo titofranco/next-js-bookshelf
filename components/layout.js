@@ -16,7 +16,7 @@ export default function Layout({children}) {
         <meta name="theme-color" content="#000000"/>
           {/* manifest.json provides metadata used when your web app is added to the
           homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/ */}
-        <link rel="manifest" href="%PUBLIC_URL%/manifest.json"/>
+        <link rel="manifest" href="manifest.json"/>
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
         <title>{siteTitle}</title>
