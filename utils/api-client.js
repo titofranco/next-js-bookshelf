@@ -1,6 +1,6 @@
 import { QueryCache } from 'react-query';
 const apiURL = process.env.NEXT_PUBLIC_REACT_APP_API_URL
-import * as React from "react";
+import * as React from "react"; //allow calling window.location
 
 async function client(
   endpoint,

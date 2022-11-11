@@ -22,7 +22,7 @@ function BookRow({book}) {
     >
       <Link
         aria-labelledby={id}
-        href={`/book/${book.id}`}
+        href={`/books/${book.id}`}
         css={{
           minHeight: 270,
           flexGrow: 2,

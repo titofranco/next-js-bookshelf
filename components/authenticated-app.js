@@ -66,7 +66,6 @@ export default function AuthenticatedApp() {
         <main css={{ width: "100%" }}>
           <ErrorBoundary FallbackComponent={ErrorFallback}>
             <DiscoverBooksScreen/>
-            {/* <AppRoutes /> */}
           </ErrorBoundary>
         </main>
       </div>
