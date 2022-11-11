@@ -39,22 +39,8 @@ import { client } from '../utils/api-client';
 // }
 
 function useClient() {
-  //const {accessToken: token, getAccessToken} = useToken()
-  //getAccessToken()
-  // console.log("before token")
-  // const token = findToken()
-  //console.log('token outside ', token)
-
-  //return (endpoint, config) => client(endpoint, { ...config, token})
-  //return (endpoint, config) => client(endpoint, { ...config, token})
-  const { getAccessTokenSilently } = useAuth0();
- 
-  return(endpoint, config) => client(endpoint, { ...config, getAccessTokenSilently })
-
-  // return React.useCallback(
-  //   (endpoint, config) => client(endpoint, { ...config, token, getToken }),
-  //   [token]
-  // );
+const { getAccessTokenSilently, logout } = useAuth0();
+  return(endpoint, config) => client(endpoint, { ...config, getAccessTokenSilently, logout })
 }
 
 export {useClient}
