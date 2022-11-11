@@ -8,16 +8,7 @@ function UnauthenticatedApp() {
 
   const { loginWithRedirect } = useAuth0();
   return (
-    <div
-      css={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%',
-        height: '100vh',
-      }}
-    >
+    <>
       <Logo width="80" height="80" />
       <h1>Bookshelf</h1>
       <div
@@ -30,7 +21,7 @@ function UnauthenticatedApp() {
           <Button variant="primary" onClick={() => loginWithRedirect()}>Login</Button>
         
       </div>
-    </div>
+    </>
   )
 }
 
