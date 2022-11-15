@@ -21,8 +21,11 @@ import { client } from '../utils/api-client';
 
 
 function useClient() {
-const { getAccessTokenSilently, logout } = useAuth0();
-  return(endpoint, config) => client(endpoint, { ...config, getAccessTokenSilently, logout })
+  const { getAccessTokenSilently, logout } = useAuth0();
+
+  return React.useCallback((endpoint, config) => 
+  client(endpoint, { ...config, getAccessTokenSilently, logout }),
+  [getAccessTokenSilently],)
 }
 
 export {useClient}
