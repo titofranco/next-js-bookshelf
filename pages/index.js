@@ -1,7 +1,6 @@
 import Layout from '../components/layout'
-import React, { useEffect } from "react";
-import UnauthenticatedApp from '../components/unauthenticated-app';
-import AuthenticatedApp from '../components/authenticated-app';
+import React from "react";
+import Discover from './discover';
 import { FullPageSpinner } from '../components/lib';
 import { useAuth0 } from "@auth0/auth0-react";
  
@@ -13,12 +12,10 @@ export default function Home() {
   }
  
   return (
-  <Layout>
     <React.Suspense fallback={<FullPageSpinner />}>
-      {isAuthenticated ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+      {isAuthenticated ? <Discover/> : <Layout/>}
     </React.Suspense>
-
-  </Layout>
   )
 }
 
+ 
