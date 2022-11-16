@@ -65,7 +65,7 @@ export default function Book({bookId}) {
             </div>
             <div css={{ marginTop: 10, minHeight: 46 }}>
               {listItem?.finishDate ? <Rating listItem={listItem} /> : null}
-              {/* {listItem ? <ListItemTimeframe listItem={listItem} /> : null} */}
+              {listItem ? <ListItemTimeframe listItem={listItem} /> : null}
             </div>
             <br />
             <p css={{ whiteSpace: "break-spaces", display: "block" }}>

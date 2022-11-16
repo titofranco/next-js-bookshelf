@@ -56,6 +56,7 @@ function StatusButtons({book}) {
   const mutateUpdate = useUpdateListItem({throwOnError: true})
   const mutateRemove = useRemoveListItem({throwOnError: true})
   const mutateAdd = useCreateListItem({throwOnError: true})
+
   return (
     <React.Fragment>
       {listItem ? (
@@ -89,7 +90,7 @@ function StatusButtons({book}) {
         <TooltipButton
           label="Add to list"
           highlight={colors.indigo}
-          params={{bookId: book.id}}
+          params={{bookId: book.id, startDate: Date.now()}}
           useMutation={mutateAdd}
           icon={<FaPlusCircle />}
         />

@@ -89,7 +89,7 @@ function useCreateListItem(options) {
   const client = useClient()
   const queryClient = useQueryClient()
 
-  return useMutation(({bookId}) => client('list_items', {data: {bookId}}), {
+  return useMutation(({bookId, startDate}) => client('list_items', {data: {bookId, startDate}}), {
     ...defaultMutationOptions(queryClient),
     ...options,
   })
