@@ -1,11 +1,8 @@
-/** @jsx jsx */
-import {jsx} from '@emotion/core'
-
 import * as React from 'react'
-import {useUpdateListItem} from 'utils/list-items'
+import { useUpdateListItem } from '../utils/list-items'
 import {FaStar} from 'react-icons/fa'
-import * as colors from 'styles/colors'
-import {ErrorMessage} from 'components/lib'
+import * as colors from '../styles/colors'
+import { ErrorMessage } from './lib'
 
 const visuallyHiddenCSS = {
   border: '0',
@@ -18,10 +15,10 @@ const visuallyHiddenCSS = {
   width: '1px',
 }
 
-function Rating({listItem}) {
+export default function Rating({listItem}) {
   const [isTabbing, setIsTabbing] = React.useState(false)
 
-  const [mutate, {error, isError}] = useUpdateListItem()
+  const {mutate, error, isError} = useUpdateListItem()
 
   React.useEffect(() => {
     function handleKeyDown(event) {
@@ -76,7 +73,7 @@ function Rating({listItem}) {
           htmlFor={ratingId}
           css={{
             cursor: 'pointer',
-            color: listItem.rating < 0 ? colors.gray20 : colors.orange,
+            color: listItem.rating <= 0 ? colors.gray20 : colors.orange,
             margin: 0,
           }}
         >
@@ -111,5 +108,3 @@ function Rating({listItem}) {
     </div>
   )
 }
-
-export {Rating}

@@ -64,7 +64,7 @@ export default function Book({bookId}) {
               </div>
             </div>
             <div css={{ marginTop: 10, minHeight: 46 }}>
-              {/* {listItem?.finishDate ? <Rating listItem={listItem} /> : null} */}
+              {listItem?.finishDate ? <Rating listItem={listItem} /> : null}
               {/* {listItem ? <ListItemTimeframe listItem={listItem} /> : null} */}
             </div>
             <br />
