@@ -31,27 +31,28 @@ export default function Layout({ children }) {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
 
-  useEffect(() => {
-    // Run code on client-side only : ensure document is here
-    if (typeof document !== undefined) {
-      // load JS bootstrap dependency
-      let bootstrap = require("bootstrap/dist/js/bootstrap");
+  // to do: fix warning error
+  // useEffect(() => {
+  //   // Run code on client-side only : ensure document is here
+  //   if (typeof document !== undefined) {
+  //     // load JS bootstrap dependency
+  //     let bootstrap = require("bootstrap/dist/js/bootstrap");
 
-      // find all toasts
-      let toastElList = [].slice.call(document.querySelectorAll(".toast"));
-      let toastList = toastElList.map(function (toastEl) {
-        return new bootstrap.Toast(toastEl);
-      });
+  //     // find all toasts
+  //     let toastElList = [].slice.call(document.querySelectorAll(".toast"));
+  //     let toastList = toastElList.map(function (toastEl) {
+  //       return new bootstrap.Toast(toastEl);
+  //     });
 
-      // show each toast explicitly
-      toastList.forEach(function (element, index) {
-        element.show();
-      });
-    }
-    // Run useEffect only once
-    // Read https://css-tricks.com/run-useeffect-only-once/
-  }, []);
- 
+  //     // show each toast explicitly
+  //     toastList.forEach(function (element, index) {
+  //       element.show();
+  //     });
+  //   }
+  //   // Run useEffect only once
+  //   // Read https://css-tricks.com/run-useeffect-only-once/
+  // }, []);
+
   return (
     <div>
       <Head>
@@ -105,7 +106,7 @@ export default function Layout({ children }) {
               },
             }}
           >
-            <div css={{ position: "relative" }}> 
+            <div css={{ position: "relative" }}>
               <Nav />
             </div>
             <main css={{ width: "100%" }}>

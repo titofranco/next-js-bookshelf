@@ -4,10 +4,11 @@ import { FaRegCalendarAlt } from "react-icons/fa";
 import { Tooltip } from "@reach/tooltip";
 import { useBook } from "../../utils/books";
 import { formatDate } from "../../utils/misc";
-//import {useListItem, useUpdateListItem} from 'utils/list-items'
+import { useListItem, useUpdateListItem } from "../../utils/list-items";
 import * as mq from "../../styles/media-queries";
 import * as colors from "../../styles/colors";
 import { Spinner, Textarea, ErrorMessage } from "../../components/lib";
+import Rating from "../../components/rating";
 import { StatusButtons } from "../../components/status-buttons";
 import Layout from "../../components/layout";
 
@@ -15,6 +16,7 @@ export default function Book({bookId}) {
   // Fetch necessary data for the blog post using params.id
   //  const listItem = useListItem(bookId)
   const book = useBook(bookId)
+  const listItem = useListItem(bookId)
 
   const { title, author, coverImageUrl, publisher, synopsis } = book;
 
@@ -58,7 +60,7 @@ export default function Book({bookId}) {
                   minHeight: 100,
                 }}
               >
-                {/* {book.loadingBook ? null : <StatusButtons book={book} />} */}
+                {book.loadingBook ? null : <StatusButtons book={book} />}
               </div>
             </div>
             <div css={{ marginTop: 10, minHeight: 46 }}>

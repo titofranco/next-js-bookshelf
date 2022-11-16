@@ -6,7 +6,7 @@ import {
   FaBook,
   FaTimesCircle,
 } from 'react-icons/fa'
-import Tooltip from '@reach/tooltip'
+import { Tooltip } from '@reach/tooltip'
 import {
   useListItem,
   useUpdateListItem,
@@ -17,14 +17,14 @@ import * as colors from '../styles/colors'
 import {useAsync} from '../utils/hooks'
 import {CircleButton, Spinner} from './lib'
 
-function TooltipButton({label, highlight, onClick, icon, ...rest}) {
-  const {isLoading, isError, error, run, reset} = useAsync()
+function TooltipButton({label, highlight, onClick, icon, params = {}, useMutation, ...rest}) {
+  const {isLoading, isError, error, reset, mutate} = useMutation
 
   function handleClick() {
     if (isError) {
       reset()
     } else {
-      run(onClick())
+      mutate(params)
     }
   }
 
@@ -54,11 +54,9 @@ function TooltipButton({label, highlight, onClick, icon, ...rest}) {
 
 function StatusButtons({book}) {
   const listItem = useListItem(book.id)
-
-  const [mutate] = useUpdateListItem({throwOnError: true})
-  const [handleRemoveClick] = useRemoveListItem({throwOnError: true})
-  const [handleAddClick] = useCreateListItem({throwOnError: true})
-
+  const mutateUpdate = useUpdateListItem({throwOnError: true})
+  const mutateRemove = useRemoveListItem({throwOnError: true})
+  const mutateAdd = useCreateListItem({throwOnError: true})
   return (
     <React.Fragment>
       {listItem ? (
@@ -66,14 +64,16 @@ function StatusButtons({book}) {
           <TooltipButton
             label="Mark as unread"
             highlight={colors.yellow}
-            onClick={() => mutate({id: listItem.id, finishDate: null})}
+            params={{id: listItem.id, finishDate: null}}
+            useMutation={mutateUpdate}
             icon={<FaBook />}
           />
         ) : (
           <TooltipButton
             label="Mark as read"
             highlight={colors.green}
-            onClick={() => mutate({id: listItem.id, finishDate: Date.now()})}
+            params={{id: listItem.id, finishDate: Date.now()}}
+            useMutation={mutateUpdate}
             icon={<FaCheckCircle />}
           />
         )
@@ -82,14 +82,16 @@ function StatusButtons({book}) {
         <TooltipButton
           label="Remove from list"
           highlight={colors.danger}
-          onClick={() => handleRemoveClick({id: listItem.id})}
+          params={{id: listItem.id}}
+          useMutation={mutateRemove}
           icon={<FaMinusCircle />}
         />
       ) : (
         <TooltipButton
           label="Add to list"
           highlight={colors.indigo}
-          onClick={() => handleAddClick({bookId: book.id})}
+          params={{bookId: book.id}}
+          useMutation={mutateAdd}
           icon={<FaPlusCircle />}
         />
       )}
