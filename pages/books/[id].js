@@ -73,9 +73,9 @@ export default function Book({bookId}) {
             </p>
           </div>
         </div>
-        {/* {!book.loadingBook && listItem ? (
+        {!book.loadingBook && listItem ? (
           <NotesTextarea listItem={listItem} />
-        ) : null} */}
+        ) : null}
       </div>
     </Layout>
 
@@ -101,7 +101,7 @@ function ListItemTimeframe({ listItem }) {
 }
 
 function NotesTextarea({ listItem }) {
-  const [mutate, { error, isError, isLoading }] = useUpdateListItem();
+  const {mutate, error, isError, isLoading } = useUpdateListItem();
 
   const debouncedMutate = React.useMemo(
     () => debounceFn(mutate, { wait: 300 }),
