@@ -1,4 +1,3 @@
-import * as React from 'react'
 import Link from 'next/link'
 import { ListItemList } from "../components/list-item-list"
 import Layout from '../components/layout'
@@ -26,3 +25,5 @@ export default function List() {
     </Layout>
   )
 }
+
+

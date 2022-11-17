@@ -7,6 +7,7 @@ import * as mq from '../styles/media-queries';
 import * as colors from '../styles/colors';
 import UnauthenticatedApp from "./unauthenticated-app";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const siteTitle = "The Next.js Bookshelf App";
 
@@ -170,7 +171,9 @@ function Nav() {
 }
 
 function NavLink(props) {
-  const match = null //to do
+  const router = useRouter();
+  const match = router.pathname === props.href
+
   return (
     <Link
       css={[
