@@ -58,7 +58,7 @@ export default function Layout({ children }) {
     <div>
       <Head>
         <meta charSet="utf-8" />
-        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" />
         <meta name="description" content="Migration of Bookshelf Next.js" />
         <meta
           name="viewport"
