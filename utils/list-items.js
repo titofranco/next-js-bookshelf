@@ -1,6 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from 'react-query'
 import { setQueryDataForBook } from './books'
 import { useClient } from '../context/auth-context'
+import { useAuth0 } from "@auth0/auth0-react";
 
 function useListItem(bookId, options) {
   const listItems = useListItems(options)
@@ -9,10 +10,12 @@ function useListItem(bookId, options) {
 
 function useListItems(options = {}) {
   const client = useClient()
+  const { user } = useAuth0();
 
   const {data: listItems} = useQuery({
     queryKey: 'list_items',
-    queryFn: () => client('list_items').then(data => data),
+    queryFn: () => client(`list_items?ownerId=${user.sub}`,
+    ).then(data => data),
     ...options,
     config: {
       ...options.config,
@@ -88,8 +91,12 @@ function useRemoveListItem(options) {
 function useCreateListItem(options) {
   const client = useClient()
   const queryClient = useQueryClient()
+  const { user } = useAuth0();
 
-  return useMutation(({bookId, startDate}) => client('list_items', {data: {bookId, startDate}}), {
+  return useMutation(({bookId, startDate}) => client('list_items', {data: {bookId,
+    startDate,
+    ownerId: user.sub
+  }}), {
     ...defaultMutationOptions(queryClient),
     ...options,
   })

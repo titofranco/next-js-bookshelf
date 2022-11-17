@@ -1,20 +1,15 @@
-
-//import {Link as RouterLink} from 'react-router-dom'
-import {Link as RouterLink} from 'next/link'
 import styled from '@emotion/styled'
 import { keyframes } from '@emotion/css'
-
-//import * as colors from 'styles/colors'
 import * as colors from '../styles/colors'
 import * as mq from '../styles/media-queries'
 import {Dialog as ReachDialog} from '@reach/dialog'
 import {FaSpinner} from 'react-icons/fa'
- 
+
 const spin = keyframes({
   '0%': {transform: 'rotate(0deg)'},
   '100%': {transform: 'rotate(360deg)'},
 })
- 
+
 const CircleButton = styled.button({
   borderRadius: '30px',
   padding: '0',
@@ -174,4 +169,3 @@ export {
   FullPageSpinner,
   Link,
 }
- 
