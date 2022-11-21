@@ -23,9 +23,16 @@ import { client } from '../utils/api-client';
 function useClient() {
   const { getAccessTokenSilently, logout } = useAuth0();
 
-  return React.useCallback((endpoint, config) => 
+  return React.useCallback((endpoint, config) =>
   client(endpoint, { ...config, getAccessTokenSilently, logout }),
   [getAccessTokenSilently],)
 }
 
-export {useClient}
+function useUser() {
+  return React.useMemo(() => {
+    const { user } = useAuth0()
+    return user
+  }, [])
+}
+
+export {useClient, useUser}
